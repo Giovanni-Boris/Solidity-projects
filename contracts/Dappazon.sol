@@ -3,6 +3,7 @@ pragma solidity ^0.8.9;
 
 contract Dappazon {
   address public owner;
+
   struct Item {
     uint256 id; 
     string name; 
@@ -13,8 +14,16 @@ contract Dappazon {
     uint256 stock;
   }
 
-  mapping (uint256 => Item) public items;
+  struct Order{
+    uint256 time;
+    Item item; 
+  }
 
+  mapping (uint256 => Item) public items;
+  mapping (address => uint256) public orderCount;
+  mapping (address => mapping(uint256 => Order)) public orders;
+
+  event Buy(address buyer, uint256 orderId, uint256 itemId);
   event List(string name, uint256 cost, uint256 quantity);
 
   modifier onlyOwner() {
@@ -54,6 +63,27 @@ contract Dappazon {
     emit List(_name, _cost, _stock); 
   }
   //Buy products
+  function buy(uint256 _id) public payable{
+    //Fetch item
+    Item memory item =  items[_id];
 
+    // Require enough ether to buy item
+    require(msg.value >= item.cost);
+
+    // Require item is in stock
+    require(item.stock > 0);
+    // Create on order
+    Order memory order = Order(block.timestamp, item);
+
+    // Add order for user
+    orderCount[msg.sender]++;
+    orders[msg.sender][orderCount[msg.sender]] = order;
+
+    //substrack stack
+    items[_id].stock = item.stock - 1;
+
+    // Emit event 
+    emit Buy(msg.sender, orderCount[msg.sender], item.id);
+  }
   //Withdrwa funds
 }
