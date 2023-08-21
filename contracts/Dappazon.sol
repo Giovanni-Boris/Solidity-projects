@@ -2,5 +2,9 @@
 pragma solidity ^0.8.9;
 
 contract Dappazon {
-  string public name = "dappzone";
+  address public owner;
+
+  constructor() {
+    owner = msg.sender;
+  }
 }
