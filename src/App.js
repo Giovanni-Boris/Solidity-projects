@@ -22,6 +22,9 @@ function App() {
   const [clothing, setClothing] = useState(null)
   const [toys, setToys] = useState(null)
 
+  const togglePop = () => {
+    console.log("Toggle pop.....")
+  }
   const loadBlockchainData = async()=>{
     //Connect to blockchain
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -58,6 +61,13 @@ function App() {
       <Navigation account={account} setAccount={setAccount}/>
       <h2>Dappazon Best Sellers</h2>
 
+      {electronics && clothing && toys && (
+        <>
+          <Section title={"Clothing & Jewelry"} items={clothing} togglePop={togglePop} />
+          <Section title={"Electronics & Gadgets"} items={electronics} togglePop={togglePop} />
+          <Section title={"Toys & Gaming"} items={toys} togglePop={togglePop} />
+        </>
+      )}
     </div> 
   );
 }
