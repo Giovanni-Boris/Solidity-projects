@@ -1,0 +1,50 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\H A L I O N\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
+
+PATH: 
+  C:\Users\H A L I O N\AppData\Local\npm-cache\_npx\86fd6f984ad48a35\node_modules\.bin;C:\Users\H A L I O N\Desktop\solidity\dappazon\crowdfunding\node_modules\.bin;C:\Users\H A L I O N\Desktop\solidity\dappazon\node_modules\.bin;C:\Users\H A L I O N\Desktop\solidity\node_modules\.bin;C:\Users\H A L I O N\Desktop\node_modules\.bin;C:\Users\H A L I O N\node_modules\.bin;C:\Users\node_modules\.bin;C:\node_modules\.bin;C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\run-script\lib\node-gyp-bin;C:\Users\H A L I O N\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\H A L I O N\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\MATLAB\R2022b\bin;C:\Program Files\nodejs;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\Java\jdk-18.0.2\bin;C:\Program Files\Git\cmd;C:\sources\apache-maven-3.9.2\bin;C:\hadoop-3.3.5\bin;C:\hadoop-3.3.5\sbin;C:\Program Files\Docker\Docker\resources\bin;C:\Users\H A L I O N\Desktop\apache-ant-1.9.16\bin;C:\Users\H A L I O N\AppData\Local\Programs\Python\Python311\Scripts;C:\Users\H A L I O N\AppData\Local\Programs\Python\Python311;C:\Users\H A L I O N\AppData\Local\Microsoft\WindowsApps;C:\Users\H A L I O N\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\H A L I O N\AppData\Roaming\npm;C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Vim 9.0;C:\Program Files (x86)\Vim\vim90;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.13.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@chainlink/contracts/-/contracts-0.6.1.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (C:\Users\H A L I O N\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141517:19)
+      at Object.onceWrapper (node:events:627:28)
+      at ClientRequest.emit (node:events:513:28)
+      at TLSSocket.emitRequestTimeout (node:_http_client:840:9)
+      at Object.onceWrapper (node:events:627:28)
+      at TLSSocket.emit (node:events:525:35)
+      at Socket._onTimeout (node:net:568:8)
+      at listOnTimeout (node:internal/timers:564:17)
+      at process.processTimers (node:internal/timers:507:7)
+
+npm manifest: 
+  {
+    "name": "hardhat-javascript-starter",
+    "scripts": {
+      "build": "npx thirdweb@latest detect",
+      "deploy": "npx thirdweb@latest deploy",
+      "release": "npx thirdweb@latest release"
+    },
+    "devDependencies": {
+      "@matterlabs/hardhat-zksync-solc": "^0.3.17",
+      "hardhat": "^2.13.0"
+    },
+    "dependencies": {
+      "@thirdweb-dev/contracts": "^3.8.0",
+      "zksync-web3": "^0.14.3"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
