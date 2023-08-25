@@ -1,4 +1,4 @@
-import React, { useConext, createContext } from "react";
+import React, { useContext, createContext } from "react";
 
 import {
   useAddress,
@@ -24,24 +24,28 @@ export const StateContextProvider = ({ children }) => {
 
   const publishCampaign = async (form) => {
     try {
-      const data = await createCampaign([
-        address, //owner of campaign
-        form.title, //title
-        form.description,
-        form.target,
-        new Date(form.deadline).getTime(),
-        form.image,
-      ]);
+      const data = await createCampaign({
+        args: [
+          address, // owner
+          form.title, // title
+          form.description, // description
+          form.target,
+          new Date(form.deadline).getTime(), // deadline,
+          form.image,
+        ],
+      });
       console.log("Contract call success", data);
     } catch (error) {
       console.log("contract call failure", error);
     }
   };
+  console.log(address);
   return (
     <StateContext.Provider
       value={{
         address,
         contract,
+        connect,
         createCampaign: publishCampaign,
       }}
     >
@@ -50,4 +54,4 @@ export const StateContextProvider = ({ children }) => {
   );
 };
 
-export const useStateContext = () => useConext(StateContext);
+export const useStateContext = () => useContext(StateContext);
