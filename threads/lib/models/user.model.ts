@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+console.log("Creating an User schema");
 const userSchema = new mongoose.Schema({
   id: { type: String, required: true },
   username: { type: String, required: true, unique: true },
@@ -23,3 +24,7 @@ const userSchema = new mongoose.Schema({
     },
   ],
 });
+
+const User = mongoose.models.User || mongoose.model("User", userSchema);
+
+export default User;
