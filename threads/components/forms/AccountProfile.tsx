@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { ChangeEvent, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import {
   Form,
   FormControl,
@@ -18,7 +17,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
 import { isBase64Image } from "@/lib/utils";
-import { useUploadThing } from "@/lib/uploadthing";
 
 import { UserValidation } from "@/lib/validations/user";
 import { useUploadThing } from "@/lib/uploadthing";
