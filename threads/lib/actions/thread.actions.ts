@@ -12,6 +12,25 @@ interface Params {
   path: string;
 }
 
+export async function createThread({ text, author, comunityId, path }: Params) {
+  try {
+    connectToDB();
+
+    const createThread = await Thread.create({
+      text,
+      author,
+      community: null,
+    });
+    //Update user model
+    await User.findByIdAndUpdate(author, {
+      $push: { threads: createThread._id },
+    });
+    revalidatePath(path);
+  } catch (error: any) {
+    throw new Error(`Failed to create Thread user: ${error.message}`);
+  }
+}
+
 export async function fetchPosts(pageNumber = 1, pageSize = 20) {
   connectToDB();
 
@@ -26,10 +45,6 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
     .populate({
       path: "author",
       model: User,
-    })
-    .populate({
-      path: "community",
-      model: Community,
     })
     .populate({
       path: "children", // Populate the children field
@@ -50,20 +65,4 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
   const isNext = totalPostsCount > skipAmount + posts.length;
 
   return { posts, isNext };
-}
-
-export async function fetchPosts(pageNumber = 1, pageSize = 20) {
-  connectToDB;
-
-  console.log(before);
-  //Calculate the number of posts to skip
-  const skipAmount = (pageNumber - 1) * pageSize;
-
-  //Fetch teh posts that have no parents (Top-level threads.....)
-  const postQuery = Thread.find({ parentId: { $in: [null, undefined] } })
-    .sort({ createdAt: "desc" })
-    .skip(skipAmount)
-    .limit(pageSize)
-    .populate({ path: "author", model: User })
-    .populate({ path: "children" });
 }
