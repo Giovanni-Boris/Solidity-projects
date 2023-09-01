@@ -55,32 +55,28 @@ export async function fetchUser(userId: String) {
   }
 }
 
-
-export async function fetchUserPosts(user:string){
-
-  try{
+export async function fetchUserPosts(userId: string) {
+  try {
     connectToDB;
 
     //Find all threads authored bu yser with the given userId
 
     //TODO: POPULATE COMMUNITY
-    const threads = await User.findOne({id:userId})
-      .populate({
-        path: 'threads',
+    const threads = await User.findOne({ id: userId }).populate({
+      path: "threads",
+      model: Thread,
+      populate: {
+        path: "children",
         model: Thread,
         populate: {
-          path: 'children',
-          model: Thread,
-          populate: {
-            path: 'author',
-            model: User,
-            select: 'name image id'
-          }
-        }
-      })
+          path: "author",
+          model: User,
+          select: "name image id",
+        },
+      },
+    });
     return threads;
   } catch (error: any) {
     throw new Error(`Failed to fetch posts: ${error.message}`);
   }
-}
 }

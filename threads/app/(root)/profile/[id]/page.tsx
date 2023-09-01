@@ -1,6 +1,10 @@
+import Image from "next/image";
+
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import { profileTabs } from "@/constants";
+
 import PostThread from "@/components/forms/PostThread";
 import ThreadsTab from "@/components/shared/ThreadsTab";
 import ProfileHeader from "@/components/shared/ProfileHeader";
@@ -12,7 +16,6 @@ async function Page({ params }: { params: { id: string } }) {
   if (!user) return null;
 
   const userInfo = await fetchUser(params.id);
-
   if (!userInfo?.onboarded) redirect("/onboarding");
 
   return (
@@ -22,7 +25,7 @@ async function Page({ params }: { params: { id: string } }) {
         authUserId={user.id}
         name={userInfo.name}
         username={userInfo.username}
-        imgURL={userInfo.image}
+        imgUrl={userInfo.image}
         bio={userInfo.bio}
       />
       <div className="mt-9 ">
