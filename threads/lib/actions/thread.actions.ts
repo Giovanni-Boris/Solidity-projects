@@ -12,14 +12,19 @@ interface Params {
   path: string;
 }
 
-export async function createThread({ text, author, comunityId, path }: Params) {
+export async function createThread({
+  text,
+  author,
+  communityId,
+  path,
+}: Params) {
   try {
     connectToDB();
 
     const createThread = await Thread.create({
       text,
       author,
-      community: null,
+      community: communityId,
     });
     //Update user model
     await User.findByIdAndUpdate(author, {
