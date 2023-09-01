@@ -48,16 +48,14 @@ export const POST = async (request: Request) => {
   // After adding the endpoint, you'll see the secret on the right side.
   console.log("Proceso", process.env.NEXT_CLERK_WEBHOOK_SECRET);
   const wh = new Webhook(process.env.NEXT_CLERK_WEBHOOK_SECRET || "");
-
+  console.log("No pase");
   let evnt: Event | null;
 
   try {
-    console.log("pase");
     evnt = wh.verify(
       JSON.stringify(payload),
       heads as IncomingHttpHeaders & WebhookRequiredHeaders,
     ) as Event;
-    console.log("No pase");
   } catch (err) {
     return NextResponse.json({ message: err }, { status: 400 });
   }
