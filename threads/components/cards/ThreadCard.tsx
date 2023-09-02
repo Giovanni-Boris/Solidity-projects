@@ -35,6 +35,7 @@ function ThreadCard({
   comments,
   isComment,
 }: Props) {
+  console.log(createdAt);
   return (
     <article
       className={`flex w-full flex-col rounded-xl ${
